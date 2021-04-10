@@ -6,6 +6,7 @@ Created on Sat Apr 10 16:31:15 2021
 """
 """The program trace specific product which you choose then can send mail to you
 when price is low """
+import time
 import requests
 from bs4 import BeautifulSoup
 import smtplib
@@ -82,11 +83,13 @@ def send_email(toMail, url):
     server.quit()
     
 def main():
-    #You can arrange the price
-    if get_price(soup) < 300:
-        send_email("example@icloud.com",URL)
-    else: 
-        print("The product price hasn't down ")
+    while True:
+        #You can arrange the price
+        if get_price(soup) < 300:
+            send_email("example@icloud.com",URL)
+        else: 
+            print("The product price hasn't down ")
+       time.sleep(60)     
 if __name__ == '__main__':
     main()
     
